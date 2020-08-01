@@ -7,3 +7,19 @@ D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-
 D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.csprojResolveAssemblyReference.cache
 D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.dll
 D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.pdb
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\NUnit3.TestAdapter.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\NUnit3.TestAdapter.pdb
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\nunit.engine.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\nunit.engine.api.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\nunit.engine.core.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\DateTimeLabTests.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\DateTimeLabTests.pdb
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\DateTimeLab.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\nunit.framework.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\DateTimeLab.pdb
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\bin\Debug\nunit.framework.xml
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.csprojAssemblyReference.cache
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.csproj.CoreCompileInputs.cache
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.csproj.CopyComplete
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.dll
+C:\Users\Tia Simmons\Documents\SoftwareGuild\Repos\Badge2\Intermediate Concepts\Practice\DateTime\DateTimeLabTests\obj\Debug\DateTimeLabTests.pdb

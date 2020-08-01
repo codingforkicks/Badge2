@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +16,7 @@ namespace DateTimeLab
         /// </summary>
         public DateTime GetTheDateToday()
         {
-            throw new NotImplementedException();
+            return DateTime.Today;
         }
 
         /// <summary>
@@ -25,7 +27,8 @@ namespace DateTimeLab
         /// </summary>
         public string GetShortDateStringFromParamaters(int month, int day, int year)
         {
-            throw new NotImplementedException();
+            //use substring for year since year is passed as yyyy
+            return $"{month}/{day}/{year.ToString().Substring(2)}";
         }
 
         /// <summary>
@@ -36,7 +39,7 @@ namespace DateTimeLab
         /// </summary>
         public DateTime GetDateTimeObjectFromString(string date)
         {
-            throw new NotImplementedException();
+            return DateTime.Parse(date);
         }
 
         /// <summary>
@@ -46,7 +49,10 @@ namespace DateTimeLab
         /// </summary>
         public string GetFormatedDateString(string date)
         {
-            throw new NotImplementedException();
+            //create custom format for string
+            DateTime formattedDate = DateTime.Parse(date);
+            string format = "MM.dd.yyyy hh:mm tt";
+            return formattedDate.ToString(format);
         }
 
         /// <summary>
@@ -56,7 +62,11 @@ namespace DateTimeLab
         /// </summary>
         public string GetDateInSixMonths(string date)
         {
-            throw new NotImplementedException();
+            DateTime currentDate = DateTime.Parse(date);
+            string format = "MMMM d, yyyy";
+
+            DateTime futureDate = currentDate.AddMonths(6);
+            return futureDate.ToString(format);
         }
 
         /// <summary>
