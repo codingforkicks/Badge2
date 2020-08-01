@@ -1,0 +1,5 @@
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLab\bin\Debug\DateTimeLab.dll
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLab\bin\Debug\DateTimeLab.pdb
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLab\obj\Debug\DateTimeLab.csprojResolveAssemblyReference.cache
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLab\obj\Debug\DateTimeLab.dll
+D:\Git\Curriculum\dotnet\ObjectOrientedProgramming\03-Collections-LINQ-SystemIO-DateTime\Asssessments\DateTime\DateTimeLab\obj\Debug\DateTimeLab.pdb
