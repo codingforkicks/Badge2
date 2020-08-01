@@ -49,9 +49,9 @@ namespace DateTimeLab
         /// </summary>
         public string GetFormatedDateString(string date)
         {
-            //create custom format for string
-            DateTime formattedDate = DateTime.Parse(date);
+            //create custom format for string output
             string format = "MM.dd.yyyy hh:mm tt";
+            DateTime formattedDate = DateTime.Parse(date);
             return formattedDate.ToString(format);
         }
 
@@ -62,9 +62,9 @@ namespace DateTimeLab
         /// </summary>
         public string GetDateInSixMonths(string date)
         {
-            DateTime currentDate = DateTime.Parse(date);
+            //create custom format for string output
             string format = "MMMM d, yyyy";
-
+            DateTime currentDate = DateTime.Parse(date);
             DateTime futureDate = currentDate.AddMonths(6);
             return futureDate.ToString(format);
         }
@@ -76,7 +76,10 @@ namespace DateTimeLab
         /// </summary>
         public string GetDateThirtyDaysInPast(string date)
         {
-            throw new NotImplementedException();
+            string format = "MMMM d, yyyy";
+            DateTime currentDate = DateTime.Parse(date);
+            DateTime pastDate = currentDate.AddDays(-30);
+            return pastDate.ToString(format);
         }
 
 
@@ -89,7 +92,34 @@ namespace DateTimeLab
         /// <returns>An array of date objects of size count</returns>
         public DateTime[] GetNextWednesdays(int count, string startDate)
         {
-            throw new NotImplementedException();
+            //create array to store wednesdays and an index for while loop
+            DateTime[] wednesdays = new DateTime[count];
+            int index = 0;
+
+            //record current date and determine its day of the week
+            DateTime currentDate = DateTime.Parse(startDate);
+
+            while(index < count)
+            {
+                //determine if current date is wednesday
+                //if so add it to datetime array
+                //if not find the next wednesday
+                if(currentDate.DayOfWeek == DayOfWeek.Wednesday)
+                {
+                    wednesdays[index] = currentDate;
+                    index++;
+                }
+                switch (currentDate.DayOfWeek)
+                {
+                    case DayOfWeek.Wednesday:
+                        currentDate = currentDate.AddDays(7);
+                        break;
+                    default:
+                        currentDate = currentDate.AddDays(1);
+                        break;
+                }
+            }
+            return wednesdays;
         }
     }
 }
