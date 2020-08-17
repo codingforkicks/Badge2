@@ -44,9 +44,17 @@ namespace LINQ
             //NumberBReversed();
             //GroupCategoryPrintByCategoryName(products);
 
+            //Last Exercises
             //CustomerOrdersByYearThenMonth(customers);
             //ProductCategories(products);
             //Product789Check(products);
+            //OutOfStockCategories(products);
+            
+            InStockCategories(products);
+
+            //NumbersANumOfOdds();
+            //CustomerCountByOrder(customers);
+
 
 
 
@@ -610,33 +618,92 @@ namespace LINQ
         /// <summary>
         /// Print a list of categories that have at least one product out of stock
         /// </summary>
-        static void Exercise24(IEnumerable<Product> products)
+        static void OutOfStockCategories(IEnumerable<Product> products)
         {
+            var outOfStockProducts = products.Where(p => p.UnitsInStock < 1).GroupBy(p => p.Category);
 
+            var outOfStockCategories = outOfStockProducts.Select(c => c.FirstOrDefault());
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProduct Categories with items out of stock: ");
+            Console.ResetColor();
+
+            foreach(var item in outOfStockCategories)
+            {
+                Console.WriteLine($"{item.Category}");
+            }
         }
 
         /// <summary>
         /// Print a list of categories that have no products out of stock
         /// </summary>
-        static void Exercise25(IEnumerable<Product> products)
+        static void InStockCategories(IEnumerable<Product> products)
         {
+            var outOfStockCategories = products
+                .Where(p => p.UnitsInStock < 1)
+                .GroupBy(p => p.Category)
+                .Select(c => c.FirstOrDefault());
 
+            var allCategories = products
+                .GroupBy(p => p.Category)
+                .Select(p => p.FirstOrDefault());
+
+            var inStock = allCategories
+                .Concat(outOfStockCategories);
+
+            var stock = inStock.Where(s => s.Category.Count() > 5);
+
+            foreach (var item in inStock)
+            {
+                Console.WriteLine($"{item.Category} {item.ProductID}");
+            }
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProduct Categories with no items out of stock: ");
+            Console.ResetColor();
+
+            foreach (var item in stock)
+            {
+                Console.WriteLine($"{item.Category}");
+            }
         }
 
         /// <summary>
         /// Count the number of odd numbers in NumbersA
         /// </summary>
-        static void Exercise26()
+        static void NumbersANumOfOdds()
         {
+            var numOfOdds = DataLoader.NumbersA.Where(n => n % 2 != 0).Count();
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine($"\nNumber of Odds in NumberA: {numOfOdds}");
+            Console.ResetColor();
         }
 
         /// <summary>
         /// Create and print an anonymous type containing CustomerId and the count of their orders
         /// </summary>
-        static void Exercise27(IEnumerable<Customer> customer)
+        static void CustomerCountByOrder(IEnumerable<Customer> customers)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nCustomerId and the count of their orders: ");
+            Console.ResetColor();
 
+            var orderList = customers
+                .Where(c => c.Orders.Length > 0)
+                .Select(c => new {
+                    CompanyName = c.CustomerID,
+                    OrderCount = c.Orders.Count()
+                });
+
+            foreach (var customer in orderList)
+            {
+                Console.WriteLine("==============================================================================");
+                Console.WriteLine(customer.CompanyName);
+                Console.WriteLine($"Order Count: {customer.OrderCount}");
+                Console.WriteLine("==============================================================================");
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
@@ -644,7 +711,7 @@ namespace LINQ
         /// </summary>
         static void Exercise28(IEnumerable<Product> products)
         {
-
+            
         }
 
         /// <summary>
@@ -668,7 +735,7 @@ namespace LINQ
         /// </summary>
         static void Exercise31(IEnumerable<Product> products)
         {
-
+            
         }
     }
 }
