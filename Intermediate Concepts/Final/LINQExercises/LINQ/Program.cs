@@ -15,8 +15,8 @@ namespace LINQ
             List<Product> products = DataLoader.LoadProducts();
             List<Customer> customers = DataLoader.LoadCustomers();
 
-            PrintAllProducts();
-            Console.WriteLine("\n");
+            //PrintAllProducts();
+            //Console.WriteLine("\n");
             //PrintAllCustomers();
             //Console.WriteLine("\n");
 
@@ -42,6 +42,7 @@ namespace LINQ
             //ProductsDescendingByUnitsInStock(products);
             //ProductsFilteredByCategoryAndUnitPrice(products);
             //NumberBReversed();
+            GroupCategoryPrintByCategoryName(products);
 
 
 
@@ -493,8 +494,36 @@ namespace LINQ
         /// </summary>
         static void GroupCategoryPrintByCategoryName(IEnumerable<Product> products)
         {
-            var productList = products.GroupBy(p => p.Category);
+            //create ordered list via query
+            var productList = from p in products
+                              where p.Category != null
+                              orderby p.Category
+                              select new
+                              {
+                                  Name = (string)p.ProductName,
+                                  Category = (string)p.Category,
+                              };
 
+            //grab each individual category
+            var categories = productList
+                .GroupBy(p => p.Category)
+                .Select(p => p.FirstOrDefault());
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProducts by category: ");
+            Console.ResetColor();
+
+            foreach (var item in categories)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"\nProduct Category {item.Category}: ");
+                Console.ResetColor();
+                var product = productList.Where(p => p.Category == item.Category);
+                foreach (var i in product)
+                {
+                        Console.WriteLine($"{i.Name}");
+                }
+            }
         }
 
         /// <summary>
