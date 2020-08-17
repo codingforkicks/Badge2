@@ -42,7 +42,11 @@ namespace LINQ
             //ProductsDescendingByUnitsInStock(products);
             //ProductsFilteredByCategoryAndUnitPrice(products);
             //NumberBReversed();
-            GroupCategoryPrintByCategoryName(products);
+            //GroupCategoryPrintByCategoryName(products);
+
+            //CustomerOrdersByYearThenMonth(customers);
+            //ProductCategories(products);
+            //Product789Check(products);
 
 
 
@@ -537,25 +541,70 @@ namespace LINQ
         /// 2016
         ///     2 - $1000.00
         /// </summary>
-        static void Exercise21(IEnumerable<Customer> customers)
+        static void CustomerOrdersByYearThenMonth(IEnumerable<Customer> customers)
         {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nCustomer Orders By Year Then Month: ");
+            Console.ResetColor();
 
+            var orderList = customers
+                .Where(c => c.Orders.Length > 0)
+                .OrderBy(c => c.Orders[0].OrderDate.Year)
+                .ThenBy(c => c.Orders[0].OrderDate.Month);
+
+            foreach (var customer in orderList)
+            {
+                Console.WriteLine("==============================================================================");
+                Console.WriteLine(customer.CompanyName);
+                foreach (var order in customer.Orders)
+                {
+                    Console.WriteLine($"{order.OrderDate.Year}");
+                    Console.WriteLine("\t{0} {1,20:c}", order.OrderDate.Month, order.Total);
+                }
+                Console.WriteLine("==============================================================================");
+                Console.WriteLine();
+            }
         }
 
         /// <summary>
         /// Print the unique list of product categories
         /// </summary>
-        static void Exercise22(IEnumerable<Product> products)
+        static void ProductCategories(IEnumerable<Product> products)
         {
+            var categories = products
+                .GroupBy(p => p.Category)
+                .Select(p => p.FirstOrDefault());
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProducts Categories: ");
+            Console.ResetColor();
+
+            foreach(var c in categories)
+            {
+                Console.WriteLine(c.Category);
+            }
         }
 
         /// <summary>
         /// Write code to check to see if Product 789 exists
         /// </summary>
-        static void Exercise23(IEnumerable<Product> products)
+        static void Product789Check(IEnumerable<Product> products)
         {
+            const int productNum = 789;
+            var check = products
+                .Any(p => p.ProductID == productNum);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProducts Categories: ");
+            Console.ResetColor();
+
+            if (check)
+            {
+                Console.WriteLine($"item {productNum} exists");
+            } else
+            {
+                Console.WriteLine($"item {productNum} exists");
+            }
         }
 
         /// <summary>
