@@ -47,7 +47,7 @@ namespace LINQ
             //Last Exercises
             //CustomerOrdersByYearThenMonth(customers);
             //ProductCategories(products);
-            //Product789Check(products);
+            Product789Check(products);
             //OutOfStockCategories(products);
             //InStockCategories(products);
             //NumbersANumOfOdds();
@@ -601,10 +601,6 @@ namespace LINQ
             var check = products
                 .Any(p => p.ProductID == productNum);
 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nProducts Categories: ");
-            Console.ResetColor();
-
             if (check)
             {
                 Console.WriteLine($"item {productNum} exists");
@@ -626,7 +622,7 @@ namespace LINQ
             var outOfStockCategories = outOfStockProducts.Select(c => c.FirstOrDefault());
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("\nProduct Categories with items out of stock: ");
+            Console.WriteLine("\nProduct Categories with at least one item out of stock: ");
             Console.ResetColor();
 
             foreach(var item in outOfStockCategories)
