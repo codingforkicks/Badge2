@@ -49,14 +49,13 @@ namespace LINQ
             //ProductCategories(products);
             //Product789Check(products);
             //OutOfStockCategories(products);
-            
-            InStockCategories(products);
-
+            //InStockCategories(products);
             //NumbersANumOfOdds();
             //CustomerCountByOrder(customers);
-
-
-
+            //ProductCountByCategory(products);
+            //TotalUnitsInStockByCategory(products);
+            //LowestPricedProductByCategory(products);
+            //TopThreeCategoriesByAvgUnitPrice(products);
 
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
@@ -611,7 +610,7 @@ namespace LINQ
                 Console.WriteLine($"item {productNum} exists");
             } else
             {
-                Console.WriteLine($"item {productNum} exists");
+                Console.WriteLine($"item {productNum} does not exists");
             }
         }
 
@@ -620,7 +619,9 @@ namespace LINQ
         /// </summary>
         static void OutOfStockCategories(IEnumerable<Product> products)
         {
-            var outOfStockProducts = products.Where(p => p.UnitsInStock < 1).GroupBy(p => p.Category);
+            var outOfStockProducts = products
+                .Where(p => p.UnitsInStock < 1)
+                .GroupBy(p => p.Category);
 
             var outOfStockCategories = outOfStockProducts.Select(c => c.FirstOrDefault());
 
@@ -639,32 +640,17 @@ namespace LINQ
         /// </summary>
         static void InStockCategories(IEnumerable<Product> products)
         {
-            var outOfStockCategories = products
-                .Where(p => p.UnitsInStock < 1)
-                .GroupBy(p => p.Category)
-                .Select(c => c.FirstOrDefault());
-
-            var allCategories = products
-                .GroupBy(p => p.Category)
-                .Select(p => p.FirstOrDefault());
-
-            var inStock = allCategories
-                .Concat(outOfStockCategories);
-
-            var stock = inStock.Where(s => s.Category.Count() > 5);
-
-            foreach (var item in inStock)
-            {
-                Console.WriteLine($"{item.Category} {item.ProductID}");
-            }
+            var inStockCategories = products
+                .GroupBy(p => p.Category, p => p.UnitsInStock)
+                .Where(p => p.All(i => i > 0));
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("\nProduct Categories with no items out of stock: ");
             Console.ResetColor();
 
-            foreach (var item in stock)
+            foreach (var item in inStockCategories)
             {
-                Console.WriteLine($"{item.Category}");
+                Console.WriteLine($"{item.Key}");
             }
         }
 
@@ -709,33 +695,78 @@ namespace LINQ
         /// <summary>
         /// Print a distinct list of product categories and the count of the products they contain
         /// </summary>
-        static void Exercise28(IEnumerable<Product> products)
+        static void ProductCountByCategory(IEnumerable<Product> products)
         {
-            
+            var listOfCategoriesAndCount = products
+                .GroupBy(p => p.Category);
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProduct categories and the count of the products they contain: ");
+            Console.ResetColor();
+
+            foreach (var item in listOfCategoriesAndCount)
+            {
+                Console.WriteLine($"{item.Key} \t {item.Count()}");
+            }
         }
 
         /// <summary>
         /// Print a distinct list of product categories and the total units in stock
         /// </summary>
-        static void Exercise29(IEnumerable<Product> products)
+        static void TotalUnitsInStockByCategory(IEnumerable<Product> products)
         {
+            var categoriesAndUnits = products
+                .GroupBy(p => p.Category, p => p.UnitsInStock);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProduct categories and the total units in stock: ");
+            Console.ResetColor();
+
+            foreach (var item in categoriesAndUnits)
+            {
+                Console.WriteLine($"{item.Key} \t {item.Sum():d}");
+            }
         }
 
         /// <summary>
         /// Print a distinct list of product categories and the lowest priced product in that category
         /// </summary>
-        static void Exercise30(IEnumerable<Product> products)
+        static void LowestPricedProductByCategory(IEnumerable<Product> products)
         {
+            var categoriesAndUnitPrice = products
+                .GroupBy(p => p.Category, p => p.UnitPrice);
 
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nProduct categories and the lowest priced product in that category: ");
+            Console.ResetColor();
+
+            foreach (var item in categoriesAndUnitPrice)
+            {
+                Console.WriteLine($"{item.Key} \t {item.Min():c}");
+            }
         }
 
         /// <summary>
         /// Print the top 3 categories by the average unit price of their products
         /// </summary>
-        static void Exercise31(IEnumerable<Product> products)
+        static void TopThreeCategoriesByAvgUnitPrice(IEnumerable<Product> products)
         {
-            
+            //sort products by category
+            //find average of each category
+            //take top 3
+            var topThreeCategories = products
+                .GroupBy(p => p.Category, p => p.UnitPrice)
+                .OrderByDescending(p => p.Average())
+                .Take(3);
+
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\nTop 3 categories by the average unit price of their products: ");
+            Console.ResetColor();
+
+            foreach (var item in topThreeCategories)
+            {
+                Console.WriteLine($"{item.Key} \t {item.Average():c}");
+            }
         }
     }
 }
