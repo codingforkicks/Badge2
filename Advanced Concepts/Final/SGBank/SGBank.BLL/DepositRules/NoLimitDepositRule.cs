@@ -15,7 +15,7 @@ namespace SGBank.BLL.DepositRules
         {
             AccountDepositResponse response = new AccountDepositResponse();
             
-            if((account.Type != AccountType.Basic) || (account.Type != AccountType.Premium))
+            if(account.Type != AccountType.Basic && account.Type != AccountType.Premium)
             {
                 response.Success = false;
                 response.Message = "Error: Only Basic and Premium accounts can deposit with no limit.  Contact IT";
