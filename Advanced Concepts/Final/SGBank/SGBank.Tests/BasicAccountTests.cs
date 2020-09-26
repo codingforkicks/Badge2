@@ -30,13 +30,8 @@ namespace SGBank.Tests
                 Type = accountType
             };
 
-            Console.WriteLine(testAccount.Type);
-            Console.WriteLine(testAccount.AccountNumber);
-
             AccountDepositResponse response = new AccountDepositResponse();
             response = deposit.Deposit(testAccount, amount);
-            Console.WriteLine(response.Message);
-            Console.WriteLine(response.Success);
 
             Assert.AreEqual(expectedResult, response.Success);
         }

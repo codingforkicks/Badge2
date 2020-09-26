@@ -49,6 +49,11 @@ namespace SGBank.BLL.WithdrawRules
             response.Amount = amount;
             response.Success = true;
 
+            if(response.Account.Balance < 0)
+            {
+                response.Account.Balance -= 10;
+            }
+
             return response;
         }
     }
