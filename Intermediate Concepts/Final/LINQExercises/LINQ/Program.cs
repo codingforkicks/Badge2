@@ -21,11 +21,11 @@ namespace LINQ
             //Console.WriteLine("\n");
 
             //First 10 Exercises
-            //PrintAllOutOfStockProducts(products);
-            //ProductsOver3Dollars(products);
-            //WACustomers(customers);
-            //AnonymousTypeProductName(products);
-            //UnitPriceUp25(products);
+            PrintAllOutOfStockProducts(products);
+            ProductsOver3Dollars(products);
+            WACustomers(customers);
+            AnonymousTypeProductName(products);
+            UnitPriceUp25(products);
             //NameAndCategoryToUpperCase(products);
             //ReorderFlag(products);
             //StockValue(products);
