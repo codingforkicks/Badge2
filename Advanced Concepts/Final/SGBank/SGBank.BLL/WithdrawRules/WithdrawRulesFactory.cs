@@ -10,9 +10,15 @@ namespace SGBank.BLL.WithdrawRules
 {
     public class WithdrawRulesFactory
     {
-        public static IWithdraw Create(AccountType account)
+        public static IWithdraw Create(AccountType type)
         {
-            throw new NotImplementedException();
+            switch(type)
+            {
+                case AccountType.Free:
+                    return new FreeAccountWithdrawRule();
+            }
+
+            throw new Exception("Account type is not supported!");
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SGBank.Models;
 using SGBank.Models.Responses;
+using SGBank.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SGBank.BLL.WithdrawRules
 {
-    public class FreeAccountWithdrawRule
+    public class FreeAccountWithdrawRule : IWithdraw
     {
         public AccountWithdrawResponse Withdraw(Account account, decimal amount)
         {
