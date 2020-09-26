@@ -24,6 +24,11 @@ namespace SGBank.Tests
             Assert.IsNotNull(response.Account);
             Assert.IsTrue(response.Success);
             Assert.AreEqual("12345", response.Account.AccountNumber);
+
+            AccountLookupResponse response2 = manager.LookupAccount("345");
+
+            Assert.IsNull(response2.Account);
+            Assert.IsFalse(response2.Success);
         }
 
         [Test]
