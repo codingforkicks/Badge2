@@ -14,11 +14,11 @@ namespace SGBank.BLL.DepositRules
         public AccountDepositResponse Deposit(Account account, decimal amount)
         {
             AccountDepositResponse response = new AccountDepositResponse();
-
-            if(account.Type != AccountType.Basic || account.Type != AccountType.Premium)
+            
+            if((account.Type != AccountType.Basic) || (account.Type != AccountType.Premium))
             {
                 response.Success = false;
-                response.Message = "Error: a non free account hit the Free Deposit Rule.  Contact IT";
+                response.Message = "Error: Only Basic and Premium accounts can deposit with no limit.  Contact IT";
                 return response;
             }
             if(amount <= 0)
