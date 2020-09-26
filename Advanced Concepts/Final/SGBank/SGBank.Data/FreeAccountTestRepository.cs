@@ -20,7 +20,11 @@ namespace SGBank.Data
 
         public Account LoadAccount(string AccountNumber)
         {
-            return _account;
+            if(AccountNumber == _account.AccountNumber)
+            {
+                return _account;
+            }
+            return null;
         }
 
         public void SaveAccount(Account account)

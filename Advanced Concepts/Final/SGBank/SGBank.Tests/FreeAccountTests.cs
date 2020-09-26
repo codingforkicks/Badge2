@@ -2,6 +2,7 @@
 using SGBank.BLL;
 using SGBank.Models;
 using SGBank.Models.Responses;
+using SGBank.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,20 @@ namespace SGBank.Tests
         {
             AccountManager manager = AccountManagerFactory.Create();
 
-            AccountLookupResponse response = manager.LookupAccount("");
+            AccountLookupResponse response = manager.LookupAccount("12345");
 
             Assert.IsNotNull(response.Account);
             Assert.IsTrue(response.Success);
             Assert.AreEqual("12345", response.Account.AccountNumber);
+        }
+
+        [Test]
+        public void CanLoadAccount()
+        {
+            FreeAccountTestRepository testRepository = new FreeAccountTestRepository();
+
+            Assert.AreEqual("12345", testRepository.LoadAccount("12345").AccountNumber);
+            Assert.AreEqual(null, testRepository.LoadAccount("14"));
         }
     }
 }
