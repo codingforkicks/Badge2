@@ -64,5 +64,32 @@ namespace SGBank.BLL
 
             return response;
         }
+
+        public AccountWithdrawResponse Withdraw(string accountNumber, decimal amount)
+        {
+            AccountWithdrawResponse response = new AccountWithdrawResponse();
+
+            response.Account = _accountRepository.LoadAccount(accountNumber);
+            if (response.Account == null)
+            {
+                response.Success = false;
+                response.Message = $"{accountNumber} is not a valid account.";
+                return response;
+            }
+            else
+            {
+                response.Success = true;
+            }
+
+            IWithdraw withdrawRule = WithdrawRulesFactory.Create(response.Account.Type);
+            response = withdrawRule.Withdraw(response.Account, amount);
+
+            if (response.Success)
+            {
+                _accountRepository.SaveAccount(response.Account);
+            }
+
+            return response;
+        }
     }
 }
