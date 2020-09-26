@@ -13,7 +13,7 @@ namespace SGBank.Data
         private static Account _account = new Account
         {
             Name = "Basic Account",
-            Balance = 100.00M,
+            Balance = 100M,
             AccountNumber = "33333",
             Type = AccountType.Basic
         };
