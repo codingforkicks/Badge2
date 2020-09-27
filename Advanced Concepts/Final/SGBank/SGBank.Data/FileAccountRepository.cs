@@ -1,5 +1,4 @@
 ﻿using SGBank.Models;
-using SGBank.Models.Responses;
 using SGBank.Models.Interfaces;
 using System;
 using System.IO;
@@ -12,12 +11,13 @@ namespace SGBank.Data
 {
     public class FileAccountRepository : IAccountRepository
     {
-        const string directory = @"..\..\..\SGBank.Data\Data1";
-        const string filePath = @"..\..\..\SGBank.Data\Data1\Account.txt";
+        const string directory = @"..\..\..\SGBank.Data\Data";
+        const string filePath = @"..\..\..\SGBank.Data\Data\Accounts.txt";
 
         public static List<Account> _accountList()
         {
-            //open the data path if it exists.  If not, create it and fill with test data
+            //open the data path if it exists.  
+            //If not, create it and fill with test data.
             if (!File.Exists(filePath))
             {
                 if (!Directory.Exists(directory))
@@ -34,8 +34,6 @@ namespace SGBank.Data
                     writer.WriteLine("22222,Basic Customer,500,B");
                     writer.WriteLine("33333,Premium Customer,1000,P");
                 }
-
-                Console.ReadKey();
             }
 
             //create list to hold accounts
@@ -117,27 +115,26 @@ namespace SGBank.Data
 
         public void SaveAccount(Account account)
         {
-            string newText = null;
-
             List<Account> accountList = _accountList();
 
+            //loop through the accounts listed
+            //change balance once correct account is found
             foreach (Account a in accountList)
             {
                 if (a.AccountNumber == account.AccountNumber)
                 {
                     a.Balance = account.Balance;
 
-                    //update file
+                    //update text file to reflect change
                     string[] rows = File.ReadAllLines(filePath);
                     for (int i = 1; i < rows.Length; i++)
                     {
                         string[] columns = rows[i].Split(',');
                         if(columns[0] == a.AccountNumber)
                         {
-                            newText = accountDataForTextFile(a);
+                            string newText = accountDataForTextFile(a);
                             lineChanger(newText, filePath, i);
                         }
-
                     }
                 }
             }

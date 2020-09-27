@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="BasicAccountTests.cs" />
     <Compile Include="FreeAccountTests.cs" />
-    <Compile Include="LiveDataAccountTest.cs" />
     <Compile Include="PremiumAccountTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
