@@ -40,6 +40,7 @@ namespace SGBank.UI
                         withdrawWorkflow.Execute();
                         break;
                     case "Q":
+                    case "q":
                         return;
                 }
 

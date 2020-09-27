@@ -12,34 +12,37 @@ namespace SGBank.Data
 {
     public class FileAccountRepository : IAccountRepository
     {
+        const string directory = @"..\..\..\SGBank.Data\Data1";
+        const string filePath = @"..\..\..\SGBank.Data\Data1\Account.txt";
 
         public static List<Account> _accountList()
         {
             //open the data path if it exists.  If not, create it and fill with test data
-            string path = @"c:\Data1\Account.txt";
-            if (!File.Exists(path))
+            if (!File.Exists(filePath))
             {
-                Console.WriteLine($"File at {path} does not exist.");
-                Console.WriteLine($"Creating Path...");
-                File.Create(path);
-                using (StreamWriter writer = new StreamWriter(path))
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                
+                File.Create(filePath).Close();
+                
+                using (StreamWriter writer = new StreamWriter(filePath))
                 {
                     writer.WriteLine("AccountNumber,Name,Balance,Type");
                     writer.WriteLine("11111,Free Customer,100,F");
                     writer.WriteLine("22222,Basic Customer,500,B");
                     writer.WriteLine("33333,Premium Customer,1000,P");
                 }
-            }
-            else
-            {
-                Console.WriteLine($"File at {path} exists");
+
+                Console.ReadKey();
             }
 
             //create list to hold accounts
             List<Account> accounts = new List<Account>();
 
             //read data from file
-            string[] rows = File.ReadAllLines(path);
+            string[] rows = File.ReadAllLines(filePath);
             for (int i = 1; i < rows.Length; i++)
             {
                 string[] columns = rows[i].Split(',');
@@ -114,7 +117,6 @@ namespace SGBank.Data
 
         public void SaveAccount(Account account)
         {
-            string path = @"c:\Data1\Account.txt";
             string newText = null;
 
             List<Account> accountList = _accountList();
@@ -126,14 +128,14 @@ namespace SGBank.Data
                     a.Balance = account.Balance;
 
                     //update file
-                    string[] rows = File.ReadAllLines(path);
+                    string[] rows = File.ReadAllLines(filePath);
                     for (int i = 1; i < rows.Length; i++)
                     {
                         string[] columns = rows[i].Split(',');
                         if(columns[0] == a.AccountNumber)
                         {
                             newText = accountDataForTextFile(a);
-                            lineChanger(newText, path, i);
+                            lineChanger(newText, filePath, i);
                         }
 
                     }
