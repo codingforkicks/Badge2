@@ -95,13 +95,13 @@ namespace SGBank.Data
             //AccountNumber,Name,Balance,Type
             if(account.Type == AccountType.Free)
             {
-                textString = $"{account.AccountNumber},'Free Customer',{account.Balance.ToString()},'F'";
+                textString = $"{account.AccountNumber},Free Customer,{account.Balance.ToString()},F";
             } else if (account.Type == AccountType.Basic)
             {
-                textString = $"{account.AccountNumber},'Basic Customer',{account.Balance.ToString()},'B'";
+                textString = $"{account.AccountNumber},Basic Customer,{account.Balance.ToString()},B";
             } else
             {
-                textString = $"{account.AccountNumber},'Premium Customer',{account.Balance.ToString()},'P'";
+                textString = $"{account.AccountNumber},Premium Customer,{account.Balance.ToString()},P";
             }
 
             return textString;
@@ -111,7 +111,7 @@ namespace SGBank.Data
         static void lineChanger(string newText, string fileName, int line_to_edit)
         {
             string[] arrLine = File.ReadAllLines(fileName);
-            arrLine[line_to_edit - 1] = newText;
+            arrLine[line_to_edit] = newText;
             File.WriteAllLines(fileName, arrLine);
         }
 
