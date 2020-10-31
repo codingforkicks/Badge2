@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWCCorp.BLL", "SWCCorp.BLL\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWCCorp.Data", "SWCCorp.Data\SWCCorp.Data.csproj", "{1DB2090F-364F-4B6C-897A-C3334C4C4CC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWCCorp.Tests", "SWCCorp.Tests\SWCCorp.Tests.csproj", "{1E6BBA34-1883-411F-9624-436795C1B999}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1DB2090F-364F-4B6C-897A-C3334C4C4CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DB2090F-364F-4B6C-897A-C3334C4C4CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DB2090F-364F-4B6C-897A-C3334C4C4CC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E6BBA34-1883-411F-9624-436795C1B999}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E6BBA34-1883-411F-9624-436795C1B999}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E6BBA34-1883-411F-9624-436795C1B999}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E6BBA34-1883-411F-9624-436795C1B999}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
