@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SWCCorp.UI.Workflows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace SWCCorp.UI
                 switch (userInput)
                 {
                     case "1":
+                        OrderLookUpWorkflow workflow = new OrderLookUpWorkflow();
+                        workflow.Execute();
                         break;
                     case "2":
                         break;
