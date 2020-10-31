@@ -10,6 +10,7 @@ namespace SWCCorp.UI
     {
         static void Main(string[] args)
         {
+            Menu.Start();
         }
     }
 }
