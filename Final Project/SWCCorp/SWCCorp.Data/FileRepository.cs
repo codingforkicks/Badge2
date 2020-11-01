@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-/*
+
 namespace SWCCorp.Data
 {
     
@@ -90,10 +90,9 @@ namespace SWCCorp.Data
             }
             return orderlist;
         }
-        public void SaveOrder(Order order)
+        public void SaveOrder(List<Order> order, string date)
         {
             
         }
     }
 }
-*/
