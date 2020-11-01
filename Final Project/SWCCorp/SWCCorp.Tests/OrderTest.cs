@@ -22,6 +22,7 @@ namespace SWCCorp.Tests
             Assert.IsNotNull(response.Orders);
             Assert.IsTrue(response.Success);
             Assert.AreEqual(1, response.Orders[0].OrderNumber);
+            Assert.AreEqual(2, response.Orders[1].OrderNumber);
         }
     }
 }
