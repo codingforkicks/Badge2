@@ -9,18 +9,21 @@ namespace SWCCorp.UI
 {
     public class ConsoleIO
     {
-        public static void DisplayOrders(Order orders, string date)
+        public static void DisplayOrders(List <Order> orders, string date)
         {
-            Console.WriteLine("*************************************************************************\n" +
-                $"{orders.OrderNumber} | {date}\n" +
-                $"{orders.CustomerName}\n" +
-                $"{orders.State}\n" +
-                $"Product: {orders.ProductType}\n" +
-                $"Materials: {orders.MaterialCost:C2}\n" +
-                $"Labor: {orders.LaborCost:C2}\n" +
-                $"Tax: {orders.Tax:C2}\n" +
-                $"Total: {orders.Total:C2}\n" +
-                 "*************************************************************************");
+            foreach(Order order in orders)
+            {
+                Console.WriteLine("*************************************************************************\n" +
+                    $"{order.OrderNumber} | {date}\n" +
+                    $"{order.CustomerName}\n" +
+                    $"{order.State}\n" +
+                    $"Product: {order.ProductType}\n" +
+                    $"Materials: {order.MaterialCost:C2}\n" +
+                    $"Labor: {order.LaborCost:C2}\n" +
+                    $"Tax: {order.Tax:C2}\n" +
+                    $"Total: {order.Total:C2}\n" +
+                        "*************************************************************************");
+            }
         }
     }
 }

@@ -8,6 +8,7 @@ namespace SWCCorp.Models.Responses
 {
     public class OrderResponse : Response
     {
-        public Order Order { get; set; }
+        public List <Order> Orders { get; set; }
+        public int Date { get; set; }
     }
 }

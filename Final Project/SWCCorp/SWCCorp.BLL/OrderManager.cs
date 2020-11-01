@@ -1,5 +1,4 @@
-﻿using SWCCorp.BLL.Validation;
-using SWCCorp.Models.Interfaces;
+﻿using SWCCorp.Models.Interfaces;
 using SWCCorp.Models.Responses;
 using System;
 using System.Collections.Generic;
@@ -21,9 +20,9 @@ namespace SWCCorp.BLL
         public OrderResponse LookupOrder(string date)
         {
             OrderResponse response = new OrderResponse();
-            response.Order = _orderRepository.DisplayOrders(date);
+            response.Orders = _orderRepository.DisplayOrders(date);
 
-            if(response.Order == null)
+            if(response.Orders == null)
             {
                 response.Success = false;
                 response.Message = $"No orders were found for {date}.";

@@ -22,7 +22,8 @@ namespace SWCCorp.Models.Interfaces
 {
     public interface IOrderRepository
     {
-        Order DisplayOrders(string date);
-        void SaveOrder(Order order);
+        List<Order> DisplayOrders(string date);
+
+        void SaveOrder(List<Order> orders, string date);
     }
 }

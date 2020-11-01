@@ -19,9 +19,9 @@ namespace SWCCorp.Tests
 
             OrderResponse response = manager.LookupOrder("");
 
-            Assert.IsNotNull(response.Order);
+            Assert.IsNotNull(response.Orders);
             Assert.IsTrue(response.Success);
-            Assert.AreEqual(1, response.Order.OrderNumber);
+            Assert.AreEqual(1, response.Orders[0].OrderNumber);
         }
     }
 }

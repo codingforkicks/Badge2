@@ -27,7 +27,7 @@ namespace SWCCorp.UI.Workflows
 
             if(response.Success)
             {
-                ConsoleIO.DisplayOrders(response.Order, date);
+                ConsoleIO.DisplayOrders(response.Orders, date);
             }
             else
             {
