@@ -1,4 +1,5 @@
-﻿using SWCCorp.Models.Interfaces;
+﻿using SWCCorp.BLL.Validation;
+using SWCCorp.Models.Interfaces;
 using SWCCorp.Models.Responses;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace SWCCorp.BLL
             _orderRepository = orderRepository;
         }
 
-        public OrderLookUpResponse LookupOrder(string date)
+        public OrderResponse LookupOrder(string date)
         {
-            OrderLookUpResponse response = new OrderLookUpResponse();
+            OrderResponse response = new OrderResponse();
             response.Order = _orderRepository.DisplayOrders(date);
 
             if(response.Order == null)

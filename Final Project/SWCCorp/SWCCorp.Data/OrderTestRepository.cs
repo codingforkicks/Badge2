@@ -27,24 +27,16 @@ namespace SWCCorp.Data
             Total = 1051.88
             */
         };
-        public void AddOrder()
-        {
-            throw new NotImplementedException();
-        }
 
         public Order DisplayOrders(string date)
         {
             return _order;
         }
 
-        public void EditOrder(string date, string OrderNumber)
+        public void SaveOrder(Order order)
         {
-            throw new NotImplementedException();
+            _order = order;
         }
 
-        public void RemoveOrder(string date, string OrderNumber)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SWCCorp.BLL;
 using SWCCorp.Models.Responses;
+using SWCCorp.BLL.Validation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWCCorp.UI.Workflows
 {
-    public class OrderLookUpWorkflow
+    public class DisplayOrderWorkflow
     {
         public void Execute()
         {
@@ -19,8 +20,10 @@ namespace SWCCorp.UI.Workflows
             Console.Write("Enter order date: ");
 
             string date = Console.ReadLine();
+            DataValidation isValid = new DataValidation();
+            date = isValid.checkDate(date);
 
-            OrderLookUpResponse response = manager.LookupOrder(date);
+            OrderResponse response = manager.LookupOrder(date);
 
             if(response.Success)
             {
@@ -28,7 +31,7 @@ namespace SWCCorp.UI.Workflows
             }
             else
             {
-                Console.WriteLine("An error occured.");
+                Console.WriteLine("An error occured!");
                 Console.WriteLine(response.Message);
             }
             Console.WriteLine("\nPress any key to continue");

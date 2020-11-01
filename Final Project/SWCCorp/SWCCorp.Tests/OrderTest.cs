@@ -17,7 +17,7 @@ namespace SWCCorp.Tests
         {
             OrderManager manager = OrderManagerFactory.Create();
 
-            OrderLookUpResponse response = manager.LookupOrder("");
+            OrderResponse response = manager.LookupOrder("");
 
             Assert.IsNotNull(response.Order);
             Assert.IsTrue(response.Success);

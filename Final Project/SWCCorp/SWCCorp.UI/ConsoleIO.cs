@@ -16,10 +16,10 @@ namespace SWCCorp.UI
                 $"{orders.CustomerName}\n" +
                 $"{orders.State}\n" +
                 $"Product: {orders.ProductType}\n" +
-                $"Materials: {orders.MaterialCost}\n" +
-                $"Labor: {orders.LaborCost}\n" +
-                $"Tax: {orders.Tax}\n" +
-                $"Total: {orders.Total}\n" +
+                $"Materials: {orders.MaterialCost:C2}\n" +
+                $"Labor: {orders.LaborCost:C2}\n" +
+                $"Tax: {orders.Tax:C2}\n" +
+                $"Total: {orders.Total:C2}\n" +
                  "*************************************************************************");
         }
     }

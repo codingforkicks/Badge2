@@ -17,6 +17,9 @@ namespace SWCCorp.BLL
             {
                 case "Test":
                     return new OrderManager(new OrderTestRepository());
+                case "Prod":
+                    //return new OrderManager(new FileRepository());
+                    return null;
                 default:
                     throw new Exception("Mode value in app config is not valid");
             }

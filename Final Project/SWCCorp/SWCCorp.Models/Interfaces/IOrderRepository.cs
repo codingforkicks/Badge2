@@ -23,8 +23,6 @@ namespace SWCCorp.Models.Interfaces
     public interface IOrderRepository
     {
         Order DisplayOrders(string date);
-        void AddOrder();
-        void EditOrder(string date, string OrderNumber);
-        void RemoveOrder(string date, string OrderNumber);
+        void SaveOrder(Order order);
     }
 }
