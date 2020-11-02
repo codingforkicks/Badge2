@@ -17,9 +17,9 @@ namespace SWCCorp.BLL
             switch (mode)
             {
                 case "Test":
-                    return new OrderManager(new OrderTestRepository());
+                    return new OrderManager(new OrderTestRepo(), new TaxRepo(), new ProductRepo());
                 case "Prod":
-                    return new OrderManager(new FileRepository());
+                    return new OrderManager(new FileRepo(), new TaxRepo(), new ProductRepo());
                 default:
                     throw new Exception("Mode value in app config is not valid");
             }

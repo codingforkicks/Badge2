@@ -31,10 +31,12 @@ namespace SWCCorp.UI
                 switch (userInput)
                 {
                     case "1":
-                        DisplayOrderWorkflow workflow = new DisplayOrderWorkflow();
-                        workflow.Execute();
+                        DisplayOrderWorkflow displayWorkflow = new DisplayOrderWorkflow();
+                        displayWorkflow.Execute();
                         break;
                     case "2":
+                        AddOrderWorkflow addWorkflow = new AddOrderWorkflow();
+                        addWorkflow.Execute();
                         break;
                     case "3":
                         break;

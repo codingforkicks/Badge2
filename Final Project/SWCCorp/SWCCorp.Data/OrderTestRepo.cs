@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SWCCorp.Data
 {
-    public class OrderTestRepository : IOrderRepository
+    public class OrderTestRepo : IOrderRepo
     {
         public List<Order> _orderlist = new List<Order> {
             new Order
@@ -52,8 +52,10 @@ namespace SWCCorp.Data
             return _orderlist;
         }
 
-        public void SaveOrder(List <Order> orders, string date)
+        public void SaveOrder(Order order, string date)
         {
+            List<Order> orders = new List<Order>();
+            orders.Add(order);
             _orderlist = orders;
         }
 

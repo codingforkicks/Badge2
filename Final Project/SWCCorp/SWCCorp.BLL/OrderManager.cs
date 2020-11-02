@@ -1,4 +1,5 @@
-﻿using SWCCorp.Models.Interfaces;
+﻿using SWCCorp.Models;
+using SWCCorp.Models.Interfaces;
 using SWCCorp.Models.Responses;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,15 @@ namespace SWCCorp.BLL
 {
     public class OrderManager
     {
-        private IOrderRepository _orderRepository;
+        private IOrderRepo _orderRepository;
+        private ITaxRepo _taxRepo;
+        private IProductsRepo _productRepo;
 
-        public OrderManager(IOrderRepository orderRepository)
+        public OrderManager(IOrderRepo orderRepository, ITaxRepo taxRepo, IProductsRepo productRepo)
         {
             _orderRepository = orderRepository;
+            _taxRepo = taxRepo;
+            _productRepo = productRepo;
         }
 
         public OrderResponse LookupOrder(string date)
@@ -27,6 +32,26 @@ namespace SWCCorp.BLL
                 response.Success = false;
                 response.Message = $"No orders were found for {date}.";
             } else
+            {
+                response.Success = true;
+            }
+
+            return response;
+        }
+        
+        public AddResponse Add(Order order, string date)
+        {
+            AddResponse response = new AddResponse();
+            _orderRepository.SaveOrder(order, date);
+            response.Orders = _orderRepository.DisplayOrders(date);
+
+            if(response.Orders == null)
+            {
+                
+                response.Success = false;
+                response.Message = $"No orders were found for {date}.";
+            }
+            else
             {
                 response.Success = true;
             }

@@ -20,10 +20,10 @@ using System.Threading.Tasks;
  */
 namespace SWCCorp.Models.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepo
     {
         List<Order> DisplayOrders(string date);
 
-        void SaveOrder(List<Order> orders, string date);
+        void SaveOrder(Order orders, string date);
     }
 }

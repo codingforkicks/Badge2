@@ -25,5 +25,19 @@ namespace SWCCorp.UI
                         "*************************************************************************");
             }
         }
+
+        public static void DisplayPendingOrder(Order order, string date)
+        {
+            Console.WriteLine("*************************************************************************\n" +
+                    $"{order.OrderNumber} | {date}\n" +
+                    $"{order.CustomerName}\n" +
+                    $"{order.State}\n" +
+                    $"Product: {order.ProductType}\n" +
+                    $"Materials: {order.MaterialCost:C2}\n" +
+                    $"Labor: {order.LaborCost:C2}\n" +
+                    $"Tax: {order.Tax:C2}\n" +
+                    $"Total: {order.Total:C2}\n" +
+                        "*************************************************************************");
+        }
     }
 }

@@ -6,20 +6,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace SWCCorp.Data
 {
     
-    public class FileRepository : IOrderRepository
+    public class FileRepo : IOrderRepo
     {
         const string directory = @"..\..\..\SWCCorp.Data\SampleData";
-        const string filePath = @"..\..\..\SWCCorp.Data\SampleData\Orders_";
+        const string filePath = @"\Orders_";
         const string extention = ".txt";
 
         public static List<Order> _orderList(string fileDate)
         {
-            string newPath = filePath + fileDate + extention;
-
+            string newPath = directory + filePath + fileDate + extention;
             //open the data path if it exists.  
             //If not, exit
             if (!File.Exists(newPath))
@@ -90,9 +90,38 @@ namespace SWCCorp.Data
             }
             return orderlist;
         }
-        public void SaveOrder(List<Order> order, string date)
+
+        public void SaveOrder(Order order, string date)
         {
-            
+            date = formatDate(date);
+            string newPath = directory + filePath + date + extention;
+            //open the data path if it exists.  
+            //If not, create it and fill with order details.
+            if (!File.Exists(newPath))
+            {
+                if (!Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+
+                File.Create(newPath).Close();
+
+                using (StreamWriter writer = new StreamWriter(newPath))
+                {
+                    writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+                    writer.WriteLine($"{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
+                }
+            }
+
+            //if the file does exist copy the current data and add the new order
+            //append new text to file
+            else if(File.Exists(newPath))
+            {
+                List<Order> currentOrders = _orderList(date);
+                int count = currentOrders.Count();
+
+                File.AppendAllText(newPath, $"{count + 1},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
+            }
         }
     }
 }
