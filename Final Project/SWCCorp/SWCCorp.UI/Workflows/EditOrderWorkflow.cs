@@ -60,7 +60,7 @@ namespace SWCCorp.UI.Workflows
                 ConsoleIO.DisplaySingleOrder(order, date);
 
                 Console.Write("Error: Invalid response\n" +
-                    "Would you like to add the current order? (y/n): ");
+                    "Would you like to edit the current order? (y/n): ");
                 userInput = Console.ReadLine().Trim();
                 userInput = userInput.ToLower();
             }

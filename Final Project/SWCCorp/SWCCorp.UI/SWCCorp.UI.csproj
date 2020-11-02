@@ -53,6 +53,7 @@
     <Compile Include="Workflows\AddOrderWorkflow.cs" />
     <Compile Include="Workflows\DisplayOrderWorkflow.cs" />
     <Compile Include="Workflows\EditOrderWorkflow.cs" />
+    <Compile Include="Workflows\RemoveOrderWorkflow.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

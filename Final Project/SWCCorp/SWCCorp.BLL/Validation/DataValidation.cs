@@ -187,7 +187,10 @@ namespace SWCCorp.BLL.Validation
             while (true)
             {
                 List<Order> orderlist = repo.DisplayOrders(date);
-
+                if(orderlist == null)
+                {
+                    return new List<Order>();
+                }
                 if (orderlist.Count() >= 1)
                 {
                     return orderlist;

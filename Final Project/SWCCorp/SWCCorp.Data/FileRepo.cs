@@ -161,6 +161,41 @@ namespace SWCCorp.Data
             }
         }
 
+        public void RemoveOrder(Order order, string date)
+        {
+            string formattedDate = formatDate(date);
+            string newPath = directory + filePath + formattedDate + extention;
+            string copyPath = directory + filePath + "copy" + extention;
+
+            if (File.Exists(newPath))
+            {
+                File.Copy(newPath, copyPath);
+
+                List<Order> currentOrders = DisplayOrders(date);
+
+                //remove the suggested order
+                string[] rows = File.ReadAllLines(copyPath);
+
+                foreach (Order o in currentOrders)
+                {
+                    string[] columns = rows[order.OrderNumber].Split(',');
+                    if (Convert.ToInt32(columns[0]) == o.OrderNumber)
+                    {
+                        currentOrders.RemoveAt(o.OrderNumber);
+                    }
+                }
+
+                //recreate file
+                File.Create(newPath).Close();
+                File.AppendAllText(newPath, $"OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+                foreach (Order newOrder in currentOrders)
+                {
+                    File.AppendAllText(newPath, $"\n{newOrder.OrderNumber},{newOrder.CustomerName},{newOrder.State},{newOrder.TaxRate:0.00},{newOrder.ProductType},{newOrder.Area:0.00},{newOrder.CostPerSquareFoot:0.00},{newOrder.LaborCostPerSquareFoot:0.00},{newOrder.MaterialCost:0.00},{newOrder.LaborCost:0.00},{newOrder.Tax:0.00},{newOrder.Total:0.00}");
+                }
+                File.Delete(copyPath);
+            }
+        }
+
         public void SaveOrder(Order order, string date, string prompt)
         {
             switch (prompt)
@@ -170,6 +205,9 @@ namespace SWCCorp.Data
                     break;
                 case "3":
                     EditOrder(order, date);
+                    break;
+                case "4":
+                    RemoveOrder(order, date);
                     break;
                 default:
                     break;

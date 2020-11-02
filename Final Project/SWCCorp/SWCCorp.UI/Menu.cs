@@ -43,6 +43,8 @@ namespace SWCCorp.UI
                         editWorkflow.Execute(userInput);
                         break;
                     case "4":
+                        RemoveOrderWorkflow removeWorkflow = new RemoveOrderWorkflow();
+                        removeWorkflow.Execute(userInput);
                         break;
                     case "5":
                         return;
