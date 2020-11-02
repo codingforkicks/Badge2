@@ -156,11 +156,6 @@ namespace SWCCorp.Data
                         string newText = DataForTextFile(newOrder);
                         lineChanger(newText, newPath, newOrder.OrderNumber);
                     };
-                    
-                    /*else
-                    {
-                        File.AppendAllText(newPath, $"\n{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate:0.00},{order.ProductType},{order.Area:0.00},{order.CostPerSquareFoot:0.00},{order.LaborCostPerSquareFoot:0.00},{order.MaterialCost:0.00},{order.LaborCost:0.00},{order.Tax:0.00},{order.Total:0.00}");
-                    }*/
                 }
                 File.Delete(copyPath);
             }
