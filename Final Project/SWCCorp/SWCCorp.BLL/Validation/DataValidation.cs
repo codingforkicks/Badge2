@@ -10,6 +10,7 @@ namespace SWCCorp.BLL.Validation
 {
     public class DataValidation
     {
+        //display validation
         public string checkDate(string date)
         {
             while (true)
@@ -29,6 +30,7 @@ namespace SWCCorp.BLL.Validation
             }
         }
 
+        //add validation
         public string checkDateTime(string date)
         {
             while (true)
@@ -45,7 +47,7 @@ namespace SWCCorp.BLL.Validation
             }
         }
 
-        public string checkNameChange(string name)
+        public string checkName(string name)
         {
             name = name.Trim();
             while (true)
@@ -99,7 +101,7 @@ namespace SWCCorp.BLL.Validation
                 }
             }
         }
-        public Products checkProductSelection()
+        public Products checkProductSelection(string input = "temp")
         {
             ProductRepo productRepo = new ProductRepo();
             List<Products> products = productRepo.LoadProductTypes();
@@ -112,8 +114,21 @@ namespace SWCCorp.BLL.Validation
                     $"Labor Cost Per Square Foot {p.LaborCostPerSquareFoot}\n");
             }
 
-            Console.Write("Enter product type name: ");
+            //added logic for edit
+            if (input != "temp")
+            {
+                Console.Write("Enter product type name or press enter to skip: ");
+            }
+            else { 
+                Console.Write("Enter product type name: ");
+            };
+
             string productType = Console.ReadLine();
+
+            if (input != "temp" && productType == "")
+            {
+                return null;
+            };
 
             bool isValid = Char.IsLetter(productType[0]);
 
@@ -164,5 +179,120 @@ namespace SWCCorp.BLL.Validation
             }
         }
 
+        //edit validation
+        public List <Order> checkOrderList(string date)
+        {
+            FileRepo repo = new FileRepo();
+
+            while (true)
+            {
+                List<Order> orderlist = repo.DisplayOrders(date);
+
+                if (orderlist.Count() >= 1)
+                {
+                    return orderlist;
+                }
+                return new List<Order>();
+            }
+        }
+        public Order checkOrderNumber(string orderNum, string date)
+        {
+            List<Order> orderlist = checkOrderList(date);
+
+            while (true)
+            {
+                if(orderlist.Count() < 0)
+                {
+                    return new Order();
+                }
+                if(int.TryParse(orderNum, out int result))
+                {
+                    if (result <= orderlist.Count())
+                    {
+                        foreach (Order order in orderlist)
+                        {
+                            if (order.OrderNumber == result)
+                            {
+                                return order;
+                            }
+                        }
+                    }
+                    else {
+                        return null;
+                    }
+                }else
+                {
+                    Console.WriteLine("\nError: Invalid Input");
+                    Console.Write("Enter order number: ");
+                    orderNum = Console.ReadLine();
+                }
+
+            }
+        }
+
+        public string checkNameChange(Order order, string name)
+        {
+            name = name.Trim();
+            while (true)
+            {
+                if (name == "")
+                {
+                    return order.CustomerName;
+                }
+                else if (name.Length < 3)
+                {
+                    Console.WriteLine("\nError: Name must contain at least 3 characters");
+                    Console.Write("Enter Customer Name: ");
+                    name = Console.ReadLine();
+                }
+                else
+                {
+                    return name;
+                }
+            }
+        }
+        public Tax checkStateChange(string state)
+        {
+            state = state.Trim();
+            while (true)
+            {
+                if (state == "")
+                {
+                    return null;
+                }
+                else
+                {
+                    return checkState(state);
+                }
+            }
+        }
+
+        public Products checkProductChange(string product)
+        {
+            product = product.Trim();
+            while (true)
+            {
+                if (product == "")
+                {
+                    return null;
+                }
+                else
+                {
+                    return checkProductSelection();
+                }
+            }
+        }
+
+        public decimal checkAreaChange(string area)
+        {
+            if(area == "")
+            {
+                return 0;
+            }
+            else
+            {
+                return checkArea(area);
+            }
+        }
     }
 }

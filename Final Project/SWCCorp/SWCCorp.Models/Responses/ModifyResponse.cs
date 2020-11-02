@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SWCCorp.Models
+namespace SWCCorp.Models.Responses
 {
-    public class OrderList
+    public class ModifyResponse : Response
     {
         public List<Order> Orders { get; set; }
-
-        public OrderList()
-        {
-            Orders = new List<Order>();
-        }
+        public Order Order { get; set; }
+        public string Date { get; set; }
     }
 }

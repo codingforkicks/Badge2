@@ -28,7 +28,7 @@ namespace SWCCorp.UI.Workflows
 
             Console.Write("Enter customer name: ");
             string name = Console.ReadLine();
-            name = isValid.checkNameChange(name);
+            name = isValid.checkName(name);
 
             Console.Write("Enter state: ");
             string state = Console.ReadLine();
@@ -61,6 +61,7 @@ namespace SWCCorp.UI.Workflows
 
             Console.Write("Would you like to add the current order? (y/n): ");
             string userInput = Console.ReadLine().Trim();
+            userInput = userInput.ToLower();
 
             while (userInput != "y" && userInput != "yes" && userInput != "n" && userInput != "no")
             {
@@ -72,6 +73,7 @@ namespace SWCCorp.UI.Workflows
                 Console.Write("Error: Invalid response\n" +
                     "Would you like to add the current order? (y/n): ");
                 userInput = Console.ReadLine().Trim();
+                userInput = userInput.ToLower();
             }
 
             if(userInput == "y" || userInput == "yes")

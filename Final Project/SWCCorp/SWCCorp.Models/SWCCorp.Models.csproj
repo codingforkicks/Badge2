@@ -48,10 +48,10 @@
     <Compile Include="Interfaces\IProductsRepo.cs" />
     <Compile Include="Interfaces\ITaxRepo.cs" />
     <Compile Include="Order.cs" />
-    <Compile Include="OrderList.cs" />
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Responses\AddResponse.cs" />
+    <Compile Include="Responses\ModifyResponse.cs" />
     <Compile Include="Responses\OrderResponse.cs" />
     <Compile Include="Responses\Response.cs" />
     <Compile Include="Tax.cs" />

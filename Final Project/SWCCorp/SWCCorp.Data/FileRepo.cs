@@ -118,12 +118,61 @@ namespace SWCCorp.Data
             }
         }
 
+        //create string for textfile change
+        static string DataForTextFile(Order order)
+        {
+            string textString = $"{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate:0.00},{order.ProductType},{order.Area:0.00},{order.CostPerSquareFoot:0.00},{order.LaborCostPerSquareFoot:0.00},{order.MaterialCost:0.00},{order.LaborCost:0.00},{order.Tax:0.00},{order.Total:0.00}";
+
+            return textString;
+        }
+
+        //edit text file line
+        static void lineChanger(string newText, string fileName, int line_to_edit)
+        {
+            string[] arrLine = File.ReadAllLines(fileName);
+            arrLine[line_to_edit] = newText;
+            File.WriteAllLines(fileName, arrLine);
+        }
+        public void EditOrder(Order newOrder, string date)
+        {
+            string formattedDate = formatDate(date);
+            string newPath = directory + filePath + formattedDate + extention;
+            string copyPath = directory + filePath + "copy" + extention;
+
+            if (File.Exists(newPath))
+            {
+                File.Copy(newPath, copyPath);
+
+                List<Order> currentOrders = DisplayOrders(date);
+
+                //update text file to reflect change
+                string[] rows = File.ReadAllLines(copyPath);
+                
+                foreach (Order order in currentOrders)
+                {
+                    string[] columns = rows[order.OrderNumber].Split(',');
+                    if (Convert.ToInt32(columns[0]) == newOrder.OrderNumber)
+                    {
+                        string newText = DataForTextFile(newOrder);
+                        lineChanger(newText, newPath, newOrder.OrderNumber);
+                    }else
+                    {
+                        File.AppendAllText(newPath, $"\n{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate:0.00},{order.ProductType},{order.Area:0.00},{order.CostPerSquareFoot:0.00},{order.LaborCostPerSquareFoot:0.00},{order.MaterialCost:0.00},{order.LaborCost:0.00},{order.Tax:0.00},{order.Total:0.00}");
+                    }
+                }
+                File.Delete(copyPath);
+            }
+        }
+
         public void SaveOrder(Order order, string date, string prompt)
         {
             switch (prompt)
             {
                 case "2":
                     AddOrder(order, date);
+                    break;
+                case "3":
+                    EditOrder(order, date);
                     break;
                 default:
                     break;
