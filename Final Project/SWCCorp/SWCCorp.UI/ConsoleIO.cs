@@ -43,7 +43,7 @@ namespace SWCCorp.UI
         public static void DisplaySingleOrder(Order order, string date)
         {
             Console.WriteLine("*************************************************************************\n" +
-                    $"{order.OrderNumber} | {date}\n" +
+                    $"{date}\n" +
                     $"{order.CustomerName}\n" +
                     $"{order.State}\n" +
                     $"Product: {order.ProductType}\n" +

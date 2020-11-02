@@ -1,4 +1,0 @@
-OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
-1,Bob,IN,6.00,Tile,100.00,3.50,4.15,350.00,415.00,45.90,810.90
-2,Fred,MI,5.75,Tile,100.00,3.50,4.15,350.00,415.00,43.99,808.99
-3,Paul,MI,5.75,Tile,100.00,3.50,4.15,350.00,415.00,43.99,808.99

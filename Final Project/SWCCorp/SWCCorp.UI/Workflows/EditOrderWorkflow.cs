@@ -94,9 +94,9 @@ namespace SWCCorp.UI.Workflows
                     LaborCostPerSquareFoot = productType != null ? productType.LaborCostPerSquareFoot : order.LaborCostPerSquareFoot,
                 };
 
-                Console.WriteLine("Current Order: ");
+                Console.WriteLine("\nCurrent Order: ");
                 ConsoleIO.DisplaySingleOrder(order, date);
-                Console.WriteLine("Suggested Changes: ");
+                Console.WriteLine("\nSuggested Changes: ");
                 ConsoleIO.DisplaySingleOrder(changedOrder, date);
 
                 Console.Write("Would you like to save these changes? (y/n): ");

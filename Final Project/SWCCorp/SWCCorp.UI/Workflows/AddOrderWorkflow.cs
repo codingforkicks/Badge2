@@ -54,8 +54,7 @@ namespace SWCCorp.UI.Workflows
 
             //display order to user
             Console.Clear();
-            Console.WriteLine("Add Order\n" +
-                "Current Order: ");
+            Console.WriteLine("Add Order\n");
 
             ConsoleIO.DisplayPendingOrder(order, date);
 
@@ -80,7 +79,7 @@ namespace SWCCorp.UI.Workflows
             {
                 Console.Clear();
                 //pass order
-                AddResponse response = manager.Add(order, date, prompt);
+                ModifyResponse response = manager.Modify(order, date, prompt);
 
                 if (response.Success)
                 {

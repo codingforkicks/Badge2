@@ -141,6 +141,10 @@ namespace SWCCorp.Data
 
             if (File.Exists(newPath))
             {
+                if (File.Exists(copyPath))
+                {
+                    File.Delete(copyPath);
+                }
                 File.Copy(newPath, copyPath);
 
                 List<Order> currentOrders = DisplayOrders(date);
@@ -169,28 +173,52 @@ namespace SWCCorp.Data
 
             if (File.Exists(newPath))
             {
+                if (File.Exists(copyPath))
+                {
+                    File.Delete(copyPath);
+                }
                 File.Copy(newPath, copyPath);
 
                 List<Order> currentOrders = DisplayOrders(date);
 
+                Console.ReadKey();
+
                 //remove the suggested order
                 string[] rows = File.ReadAllLines(copyPath);
 
-                foreach (Order o in currentOrders)
+                if (currentOrders.Count() == 1)
                 {
-                    string[] columns = rows[order.OrderNumber].Split(',');
-                    if (Convert.ToInt32(columns[0]) == o.OrderNumber)
-                    {
-                        currentOrders.RemoveAt(o.OrderNumber);
-                    }
+                    Console.WriteLine($"File removed");
+                    File.Delete(newPath);
+                    Console.ReadKey();
                 }
-
-                //recreate file
-                File.Create(newPath).Close();
-                File.AppendAllText(newPath, $"OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
-                foreach (Order newOrder in currentOrders)
+                else
                 {
-                    File.AppendAllText(newPath, $"\n{newOrder.OrderNumber},{newOrder.CustomerName},{newOrder.State},{newOrder.TaxRate:0.00},{newOrder.ProductType},{newOrder.Area:0.00},{newOrder.CostPerSquareFoot:0.00},{newOrder.LaborCostPerSquareFoot:0.00},{newOrder.MaterialCost:0.00},{newOrder.LaborCost:0.00},{newOrder.Tax:0.00},{newOrder.Total:0.00}");
+
+                    foreach (Order o in currentOrders)
+                    {
+                        string[] columns = rows[order.OrderNumber].Split(',');
+                        Console.WriteLine($"col: {columns[0]}\n" +
+                                $"passed order: {order.OrderNumber}, {order.CustomerName}\n" +
+                                $"current order: {o.OrderNumber}, {o.CustomerName}");
+                        if (columns[0] == order.OrderNumber.ToString())
+                        {
+                            currentOrders.RemoveAt(o.OrderNumber);
+                            break;
+                        }
+                    }
+                    Console.WriteLine("write complete");
+                    Console.ReadKey();
+
+                    //if the file is empty delete the entire order date
+                
+                    //recreate file
+                    File.Create(newPath).Close();
+                    File.AppendAllText(newPath, $"OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+                    foreach (Order newOrder in currentOrders)
+                    {
+                        File.AppendAllText(newPath, $"\n{newOrder.OrderNumber},{newOrder.CustomerName},{newOrder.State},{newOrder.TaxRate:0.00},{newOrder.ProductType},{newOrder.Area:0.00},{newOrder.CostPerSquareFoot:0.00},{newOrder.LaborCostPerSquareFoot:0.00},{newOrder.MaterialCost:0.00},{newOrder.LaborCost:0.00},{newOrder.Tax:0.00},{newOrder.Total:0.00}");
+                    }
                 }
                 File.Delete(copyPath);
             }
