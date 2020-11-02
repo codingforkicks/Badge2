@@ -1,4 +1,5 @@
 ﻿using SWCCorp.BLL;
+using SWCCorp.Models;
 using SWCCorp.Models.Responses;
 using SWCCorp.BLL.Validation;
 using System;
@@ -6,14 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SWCCorp.Models;
 using System.Runtime.CompilerServices;
 
 namespace SWCCorp.UI.Workflows
 {
     public class AddOrderWorkflow
     {
-        public void Execute()
+        public void Execute(string prompt)
         {
             OrderManager manager = OrderManagerFactory.Create();
 
@@ -77,12 +77,13 @@ namespace SWCCorp.UI.Workflows
 
             if(userInput == "y" || userInput == "yes")
             {
+                Console.Clear();
                 //pass order
-                AddResponse response = manager.Add(order, date);
+                AddResponse response = manager.Add(order, date, prompt);
 
                 if (response.Success)
                 {
-                    ConsoleIO.DisplayOrders(response.Orders, date);
+                    ConsoleIO.DisplaySingleOrder(order, date);
                 }
                 else
                 {

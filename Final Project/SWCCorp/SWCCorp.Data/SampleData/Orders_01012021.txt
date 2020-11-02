@@ -1,3 +1,4 @@
 OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
 1,Fred,IN,6.00,Carpet,150,2.25,2.10,337.50,315.00,39.1500,691.6500
 2,Greg,MI,5.75,Tile,101,3.50,4.15,353.50,419.15,44.427375,817.077375
+3,Bob,KY,6.00,Carpet,150,2.25,2.10,337.50,315.00,39.1500,691.6500

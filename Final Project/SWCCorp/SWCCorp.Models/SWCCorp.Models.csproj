@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IAdd.cs" />
     <Compile Include="Interfaces\IOrderRepo.cs" />
     <Compile Include="Interfaces\IProductsRepo.cs" />
     <Compile Include="Interfaces\ITaxRepo.cs" />

@@ -52,7 +52,7 @@ namespace SWCCorp.Data
             return _orderlist;
         }
 
-        public void SaveOrder(Order order, string date)
+        public void SaveOrder(Order order, string date, string prompt = "")
         {
             List<Order> orders = new List<Order>();
             orders.Add(order);

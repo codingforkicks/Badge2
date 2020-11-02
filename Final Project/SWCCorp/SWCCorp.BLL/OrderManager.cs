@@ -39,10 +39,10 @@ namespace SWCCorp.BLL
             return response;
         }
         
-        public AddResponse Add(Order order, string date)
+        public AddResponse Add(Order order, string date, string prompt)
         {
             AddResponse response = new AddResponse();
-            _orderRepository.SaveOrder(order, date);
+            _orderRepository.SaveOrder(order, date, prompt);
             response.Orders = _orderRepository.DisplayOrders(date);
 
             if(response.Orders == null)

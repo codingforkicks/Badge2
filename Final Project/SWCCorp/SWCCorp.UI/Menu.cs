@@ -36,7 +36,7 @@ namespace SWCCorp.UI
                         break;
                     case "2":
                         AddOrderWorkflow addWorkflow = new AddOrderWorkflow();
-                        addWorkflow.Execute();
+                        addWorkflow.Execute(userInput);
                         break;
                     case "3":
                         break;

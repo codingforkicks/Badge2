@@ -91,10 +91,12 @@ namespace SWCCorp.Data
             return orderlist;
         }
 
-        public void SaveOrder(Order order, string date)
+        public void AddOrder(Order order, string date)
         {
-            date = formatDate(date);
-            string newPath = directory + filePath + date + extention;
+            string formattedDate = formatDate(date);
+            string newPath = directory + filePath + formattedDate + extention;
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            Console.ReadKey();
             //open the data path if it exists.  
             //If not, create it and fill with order details.
             if (!File.Exists(newPath))
@@ -106,6 +108,7 @@ namespace SWCCorp.Data
 
                 File.Create(newPath).Close();
 
+                Console.WriteLine("File not found");
                 using (StreamWriter writer = new StreamWriter(newPath))
                 {
                     writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
@@ -115,12 +118,19 @@ namespace SWCCorp.Data
 
             //if the file does exist copy the current data and add the new order
             //append new text to file
-            else if(File.Exists(newPath))
+            else if (File.Exists(newPath))
             {
-                List<Order> currentOrders = _orderList(date);
-                int count = currentOrders.Count();
+                List<Order> currentOrders = DisplayOrders(date);
 
-                File.AppendAllText(newPath, $"{count + 1},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
+                File.AppendAllText(newPath, $"\n{currentOrders.Count + 1},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
+            }
+        }
+
+        public void SaveOrder(Order order, string date, string prompt)
+        {
+            if(prompt == "2")
+            {
+                AddOrder(order, date);
             }
         }
     }
