@@ -145,14 +145,14 @@ namespace SWCCorp.BLL.Validation
             {
                 if (decimal.TryParse(area, out decimal result))
                 {
-                    if(result > 100)
+                    if(result >= 100)
                     {
                         return result;
                     }
                     else
                     {
                         Console.WriteLine($"\nError: Invalid Area Size");
-                        Console.Write("Enter Area Greater than 100: ");
+                        Console.Write("Enter area size 100 or greater : ");
                         area = Console.ReadLine();
                     }
                 } else

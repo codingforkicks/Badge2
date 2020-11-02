@@ -65,8 +65,7 @@ namespace SWCCorp.UI.Workflows
             while (userInput != "y" && userInput != "yes" && userInput != "n" && userInput != "no")
             {
                 Console.Clear();
-                Console.WriteLine("Add Order\n" +
-                    "Current Order: ");
+                Console.WriteLine("Add Order\n");
 
                 ConsoleIO.DisplayPendingOrder(order, date);
 

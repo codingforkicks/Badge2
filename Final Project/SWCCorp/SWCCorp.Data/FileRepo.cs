@@ -68,7 +68,7 @@ namespace SWCCorp.Data
             {
                 dateString = dateValues[0];
             }
-            if (dateValues[0].Length < 2)
+            if (dateValues[1].Length < 2)
             {
                 dateString = dateString + "0" + dateValues[1];
             }
@@ -95,8 +95,7 @@ namespace SWCCorp.Data
         {
             string formattedDate = formatDate(date);
             string newPath = directory + filePath + formattedDate + extention;
-            Console.WriteLine(Directory.GetCurrentDirectory());
-            Console.ReadKey();
+
             //open the data path if it exists.  
             //If not, create it and fill with order details.
             if (!File.Exists(newPath))
@@ -106,14 +105,7 @@ namespace SWCCorp.Data
                     Directory.CreateDirectory(directory);
                 }
 
-                File.Create(newPath).Close();
-
-                Console.WriteLine("File not found");
-                using (StreamWriter writer = new StreamWriter(newPath))
-                {
-                    writer.WriteLine("OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
-                    writer.WriteLine($"{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
-                }
+                File.AppendAllText(newPath,$"OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total\n{order.OrderNumber},{order.CustomerName},{order.State},{order.TaxRate:0.00},{order.ProductType},{order.Area:0.00},{order.CostPerSquareFoot:0.00},{order.LaborCostPerSquareFoot:0.00},{order.MaterialCost:0.00},{order.LaborCost:0.00},{order.Tax:0.00},{order.Total:0.00}");
             }
 
             //if the file does exist copy the current data and add the new order
@@ -122,15 +114,19 @@ namespace SWCCorp.Data
             {
                 List<Order> currentOrders = DisplayOrders(date);
 
-                File.AppendAllText(newPath, $"\n{currentOrders.Count + 1},{order.CustomerName},{order.State},{order.TaxRate},{order.ProductType},{order.Area},{order.CostPerSquareFoot},{order.LaborCostPerSquareFoot},{order.MaterialCost},{order.LaborCost},{order.Tax},{order.Total}");
+                File.AppendAllText(newPath, $"\n{currentOrders.Count + 1},{order.CustomerName},{order.State},{order.TaxRate:0.00},{order.ProductType},{order.Area:0.00},{order.CostPerSquareFoot:0.00},{order.LaborCostPerSquareFoot:0.00},{order.MaterialCost:0.00},{order.LaborCost:0.00},{order.Tax:0.00},{order.Total:0.00}");
             }
         }
 
         public void SaveOrder(Order order, string date, string prompt)
         {
-            if(prompt == "2")
+            switch (prompt)
             {
-                AddOrder(order, date);
+                case "2":
+                    AddOrder(order, date);
+                    break;
+                default:
+                    break;
             }
         }
     }

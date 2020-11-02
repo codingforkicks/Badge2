@@ -47,7 +47,6 @@ namespace SWCCorp.BLL
 
             if(response.Orders == null)
             {
-                
                 response.Success = false;
                 response.Message = $"No orders were found for {date}.";
             }
